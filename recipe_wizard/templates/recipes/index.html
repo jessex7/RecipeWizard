@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block header %}
+<h1>{% block title %}Recipes{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  {% for recipe in recipes %}
+    <article class="recipe">
+      <header>
+        <h1><a href="{{ url_for('web_api_bp.get_edit_recipe_page', recipe_id=recipe.recipe_id) }}">{{ recipe["name"] }}</a></h1>
+      </header>
+      <body>
+        <ul>
+          <li>Author: {{ recipe["author"] }}</li>
+          <li>Rating: {{ recipe["rating"] }}</li>
+          <li>Prep time: {{ recipe["prep_time"] }}</li>
+          <li>Cook time: {{ recipe["cook_time"] }}</li>
+        </ul>
+        <p>Instructions: {{ recipe["instructions"] }}</p>
+        <p>Ingredients: {{ recipe["ingredients"] }}</p>
+      </body>
+    </article>
+  {% endfor %}
+{% endblock %}

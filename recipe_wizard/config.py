@@ -1,0 +1,13 @@
+SECRET_KEY = "dev"
+SITE_ADDRESS = "http://127.0.0.1:5000"
+API_VERSION = "v0.1"
+FRONT_VERSION = "v0.1"
+LOGGING_LEVEL = 10
+SQLALCHEMY_DATABASE_URI = "sqlite:///recwiz.db" 
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+SQLALCHEMY_ECHO = True
+SQLALCHEMY_ENGINE_OPTIONS = {"future":True}
+#AUTH0_DOMAIN = "dev-hcu6d10g.us.auth0.com"
+#AUTH0_API_AUDIENCE = "https://recipewizard.com"
+#ROLE_ID_STANDARD_USER = "rol_oeETuGSTdzsKJJSq"
+#AUTH_ALGORITHMS = ["rsa"]

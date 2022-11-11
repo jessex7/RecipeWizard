@@ -1,0 +1,9 @@
+.vscode
+*.pyc
+*.pyo
+instance/
+venv/
+logs/
+.DS_Store
+.venv/
+dumpfile

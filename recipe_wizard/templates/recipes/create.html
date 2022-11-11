@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block header %}
+<h1>{% block title %}Create{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="name">Recipe Name</label>
+    <input name="name" required><br>
+    <label for="rating">Rating</label>
+    <input name="rating"><br>
+    <label for="author">Author</label>
+    <input name="author"><br>
+    <label for="prep_time">Prep Time</label>
+    <input name="prep_time"><br>
+    <label for="cook_time">Cook Time</label>
+    <input name="cook_time"><br>
+    <label for="instructions">Instructions</label>
+    <textarea name="instructions" required></textarea><br>
+    <label for="ingredients">Ingredients</label>
+    <textarea name="ingredients" required></textarea><br>
+    <input type="submit" value="Save">
+  </form>
+{% endblock %}

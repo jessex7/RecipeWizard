@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block header %}
+<h1>{% block title %}Edit {{ recipe.name }}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="name">Recipe Name</label>
+    <input name="name" value="{{ request.form['name'] or recipe.name }}" required><br>
+    <label for="rating">Rating</label>
+    <input name="rating" value="{{ request.form['rating'] or recipe.rating }}" ><br>
+    <label for="author">Author</label>
+    <input name="author" value="{{ request.form['author'] or recipe.author }}"><br>
+    <label for="prep_time">Prep Time</label>
+    <input name="prep_time" value="{{ request.form['prep_time'] or recipe.prep_time }}"><br>
+    <label for="cook_time">Cook Time</label>
+    <input name="cook_time" value="{{ request.form['cook_time'] or recipe.cook_time }}"><br>
+    <label for="last_edited">Last Edited:</label>
+    <input name="last_edited" value="{{ recipe.modified_at }}"><br>
+    <label for="instructions">Instructions</label>
+    <textarea name="instructions" required>{{ request.form['ingredients'] or recipe.instructions }}</textarea><br>
+    <label for="ingredients">Ingredients</label>
+    <textarea name="ingredients" required>{{ request.form['ingredients'] or recipe.ingredients }}</textarea><br>
+    <input type="submit" value="Save">
+  </form>
+  <form method="post" action="{{ url_for('web_api_bp.delete_recipe', recipe_id=recipe.recipe_id) }}">
+    <input class="danger" type="submit" value="Delete">
+  </form>
+
+{% endblock %}
