@@ -1,5 +1,8 @@
 from sqlalchemy.ext.declarative import declarative_base
+from sys import argv
+from datetime import datetime,timezone
 import click
+import json
 from flask.cli import with_appcontext
 from flask_sqlalchemy import SQLAlchemy
 
@@ -14,9 +17,47 @@ def init_db():
 def register_database_commands(app):
     app.logger.info("registering database CLI commands to app")
     app.cli.add_command(init_db_command)
+    app.cli.add_command(insert_recipes_command)
 
 @click.command("init-db")
 @with_appcontext
 def init_db_command():
     init_db()
     click.echo("Initialized the database")
+
+
+@click.command("insert-dataset")
+@click.argument("dataset")
+@with_appcontext
+def insert_recipes_command(dataset):
+    from recipe_wizard.models import Recipe
+    #from recipe_wizard.schema import RecipeSchema
+    with open(dataset) as f:
+        session = db.session
+        timestamp = datetime.now(timezone.utc)
+        data = json.load(f)
+        for item in data:
+            recipe = convert_recipe_dict_to_model(item)
+            session.add(recipe)
+        print(session.dirty)
+        session.commit()
+
+
+def convert_recipe_dict_to_model(input_dict):
+    from recipe_wizard.models import Recipe
+    timestamp = datetime.now(timezone.utc)
+    recipe = Recipe()
+    recipe.name = input_dict["name"]
+    recipe.ingredients = input_dict["ingredients"]
+    recipe.instructions = input_dict["instructions"]
+    if "author" in input_dict:
+        recipe.author = input_dict["author"]
+    if "rating" in input_dict:
+        recipe.rating = input_dict["rating"]
+    if "cook_time" in input_dict:
+        recipe.cook_time = input_dict["cook_time"]
+    if "prep_time" in input_dict:
+        recipe.prep_time = input_dict["prep_time"]
+    recipe.created_at = timestamp
+    recipe.modified_at = timestamp
+    return recipe

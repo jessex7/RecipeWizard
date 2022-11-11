@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Dan Dan Noodles",
+        "instructions": "Test Instructions 1",
+        "ingredients": "Test Ingredients 1",
+        "prep_time":5.0,
+        "cook_time":10.0,
+        "rating":8,
+        "author":"Test Author 1",
+        "created_at":null,
+        "modified_at":null,
+        "image_location":null
+    },
+    {
+        "name": "Korean Beef",
+        "instructions": "Test Instructions 2",
+        "ingredients": "Test Ingredients 2",
+        "prep_time":7.0,
+        "cook_time":5.0,
+        "rating":7,
+        "author":"Test Author 1",
+        "created_at":null,
+        "modified_at":null,
+        "image_location":null
+    },
+    {
+        "name": "Some Bad Recipe",
+        "instructions": "Test Instructions 3",
+        "ingredients": "Test Ingredients 3",
+        "prep_time":20.0,
+        "cook_time":10.0,
+        "rating":3,
+        "author":"Test Author 2",
+        "created_at":null,
+        "modified_at":null,
+        "image_location":null
+    }
+]

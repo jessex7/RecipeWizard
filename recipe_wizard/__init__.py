@@ -5,8 +5,7 @@ def create_app(testing=False):
     app = Flask("recipe_wizard",instance_relative_config=False)
 
     if testing:
-        pass
-        #app.config.from_object("recipe_wizard.config_testing")
+        app.config.from_object("recipe_wizard.config_testing")
     else:
         app.config.from_object("recipe_wizard.config")
     

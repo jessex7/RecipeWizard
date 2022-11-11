@@ -1,5 +1,6 @@
 **Recipe Wizard**
-A playground app to learn more about various technologies in the python ecosystem.
+
+A playground app to learn more about various technologies in the python ecosystem. Should help meal planning, grocery list generation, and recipe management.
 
 Things to do:
 
@@ -17,7 +18,7 @@ Things to do:
 - [ ] Choose noSQL or sqlalchemy
 
    - [ ] if sqlalchemy is chosen, write logic that efficiently compares an object with a submitted updated object
-   
+
 - [ ] Enable search for recipe by ingredient(s), rating, name
 - [ ] Think through best way to allow recipe organization (e.g. cuisine, "cookbooks", generic tags, etc.)
 - [ ] Deployable as docker container
