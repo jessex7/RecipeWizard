@@ -7,3 +7,4 @@ SQLALCHEMY_DATABASE_URI = "sqlite:///recwiz.db.test"
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SQLALCHEMY_ECHO = True
 SQLALCHEMY_ENGINE_OPTIONS = {"future":True}
+SAMPLE_RECIPES_FILE = "tests/recipe_samples.json"

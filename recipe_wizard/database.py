@@ -30,18 +30,17 @@ def init_db_command():
 @click.argument("dataset")
 @with_appcontext
 def insert_recipes_command(dataset):
-    from recipe_wizard.models import Recipe
-    #from recipe_wizard.schema import RecipeSchema
-    with open(dataset) as f:
+    insert_recipes(recipe_file=dataset)
+
+# requires active app context
+def insert_recipes(recipe_file):
+    with open(recipe_file) as f:
         session = db.session
-        timestamp = datetime.now(timezone.utc)
         data = json.load(f)
         for item in data:
             recipe = convert_recipe_dict_to_model(item)
             session.add(recipe)
-        print(session.dirty)
         session.commit()
-
 
 def convert_recipe_dict_to_model(input_dict):
     from recipe_wizard.models import Recipe
