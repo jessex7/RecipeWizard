@@ -6,18 +6,26 @@ from marshmallow_sqlalchemy import SQLAlchemySchema, auto_field, load_instance_m
 
 from recipe_wizard.models import (
     Recipe,
-
+    Ingredient,
 )
+
+
+class IngredientSchema(SQLAlchemySchema):
+    class Meta:
+        model = Ingredient
+
+    ingredient_id = auto_field()
+    recipe_id = auto_field()
+    name = auto_field()
+    serving_unit = auto_field()
+    serving_size = auto_field()
 
 class RecipeSchema(SQLAlchemySchema):
     class Meta:
         model = Recipe
-        load_instance = True
 
     recipe_id = auto_field()
     name = auto_field()
-    instructions = auto_field()
-    ingredients = auto_field()
     prep_time = auto_field()
     cook_time = auto_field()
     rating = auto_field()
@@ -25,3 +33,5 @@ class RecipeSchema(SQLAlchemySchema):
     created_at = auto_field()
     modified_at = auto_field()
     author = auto_field()
+    ingredients = fields.Nested(IngredientSchema(exclude=("recipe_id",)), many=True)
+    instructions = auto_field()

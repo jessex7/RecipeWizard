@@ -2,7 +2,7 @@ from datetime import datetime, timezone
 from flask import Blueprint, current_app, request, redirect, url_for, render_template, abort
 from sqlalchemy.sql.expression import select, delete
 from recipe_wizard.database import db
-from recipe_wizard.models import Recipe
+from recipe_wizard.models import Recipe, Ingredient
 from recipe_wizard.schema import RecipeSchema
 
 bp = Blueprint("web_api_bp", __name__)
@@ -31,8 +31,16 @@ def create_recipe():
     try:
         new_recipe = Recipe()
         new_recipe.name = request.form["name"]
-        new_recipe.ingredients = request.form["ingredients"]
-        new_recipe.instructions = request.form["instructions"]
+        for item in request.form["ingredients"]:
+            ingredient = Ingredient()
+            ingredient.name = item["name"]
+            if "serving_unit" in item:
+                ingredient.serving_unit = item["serving_unit"]
+            if "serving_size" in item:
+                ingredient.serving_size = item["serving_size"]
+            new_recipe.ingredients.append(ingredient)
+        if "instructions" in request.form:
+            new_recipe.instructions = request.form["instructions"]
         if request.form["author"] is not None:
             new_recipe.author = request.form["author"]
         if request.form["rating"] is not None:
@@ -76,8 +84,16 @@ def edit_recipe(recipe_id):
         recipe = session.execute(stmt).scalar()
         
         recipe.name = request.form["name"]
-        recipe.ingredients = request.form["ingredients"]
-        recipe.instructions = request.form["instructions"]
+        for item in request.form["ingredients"]:
+            ingredient = Ingredient()
+            ingredient.name = item["name"]
+            if "serving_unit" in item:
+                ingredient.serving_unit = item["serving_unit"]
+            if "serving_size" in item:
+                ingredient.serving_size = item["serving_size"]
+            recipe.ingredients.append(ingredient)
+        if "instructions" in request.form:
+            recipe.instructions = request.form["instructions"]
         if "author" in request.form:
             recipe.author = request.form["author"]
         if "rating" in request.form:

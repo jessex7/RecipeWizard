@@ -2,7 +2,7 @@ from datetime import datetime, timezone
 from flask import Blueprint, current_app, request, redirect, url_for, render_template, abort
 from sqlalchemy.sql.expression import select, delete
 from recipe_wizard.database import db
-from recipe_wizard.models import Recipe
+from recipe_wizard.models import Recipe, Ingredient
 from recipe_wizard.schema import RecipeSchema
 
 bp = Blueprint("rest_api_bp", __name__)
@@ -46,12 +46,24 @@ def post_recipe():
     try:
         new_recipe = Recipe()
         new_recipe.name = json_data["name"]
-        new_recipe.ingredients = json_data["ingredients"]
-        new_recipe.instructions = json_data["instructions"]
-        if json_data["author"] is not None:
+        for item in json_data["ingredients"]:
+            ingredient = Ingredient()
+            ingredient.name = item["name"]
+            if "serving_unit" in item:
+                ingredient.serving_unit = item["serving_unit"]
+            if "serving_size" in item:
+                ingredient.serving_size = item["serving_size"]
+            new_recipe.ingredients.append(ingredient)
+        if "instructions" in json_data:
+            new_recipe.instructions = json_data["instructions"]
+        if "author" in json_data:
             new_recipe.author = json_data["author"]
-        if json_data["rating"] is not None:
+        if "rating" in json_data:
             new_recipe.rating = json_data["rating"]
+        if "prep_time" in json_data:
+            new_recipe.prep_time = json_data["prep_time"]
+        if "cook_time" in json_data:
+            new_recipe.cook_time = json_data["cook_time"]
         new_recipe.created_at = datetime.now(timezone.utc)
         new_recipe.modified_at = new_recipe.created_at
         session.add(new_recipe)
@@ -68,7 +80,7 @@ def post_recipe():
     except Exception as err:
         print("error: %s" % err)
         return {"error": "INTERNAL_SERVER_ERROR"}, 500
-
+ 
         
 @bp.put(f"/api/{api_version}/recipes/<int:recipe_id>")
 def update_recipe(recipe_id):
@@ -83,12 +95,24 @@ def update_recipe(recipe_id):
         result = session.execute(stmt)
         recipe = result.scalar()
         recipe.name = json_data["name"]
-        recipe.ingredients = json_data["ingredients"]
-        recipe.instructions = json_data["instructions"]
+        for item in json_data["ingredients"]:
+            ingredient = Ingredient()
+            ingredient.name = item["name"]
+            if "serving_unit" in item:
+                ingredient.serving_unit = item["serving_unit"]
+            if "serving_size" in item:
+                ingredient.serving_size = item["serving_size"]
+            recipe.ingredients.append(ingredient)
+        if "instructions" in json_data:
+            recipe.instructions = json_data["instructions"]
         if "author" in json_data:
             recipe.author = json_data["author"]
-        if "rating in json_data":
+        if "rating" in json_data:
             recipe.rating = json_data["rating"]
+        if "prep_time" in json_data:
+            recipe.prep_time = json_data["prep_time"]
+        if "cook_time" in json_data:
+            recipe.cook_time = json_data["cook_time"]
         recipe.modified_at = datetime.now(timezone.utc)
         session.commit()
         formatted_recipe = RecipeSchema().dumps(recipe)

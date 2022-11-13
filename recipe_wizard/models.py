@@ -20,7 +20,21 @@ class Recipe(Base):
     created_at = Column(DateTime)
     modified_at = Column(DateTime)
     author = Column(String)
-    ingredients = Column(String, nullable=False)
     prep_time = Column(Float)
     cook_time = Column(Float)
+    ingredients = relationship(
+        "Ingredient", cascade="all, delete-orphan"
+    )
+
+class Ingredient(Base):
+    __tablename__ = "ingredient"
+    ingredient_id = Column(Integer, primary_key=True)
+    recipe_id = Column(
+        Integer, ForeignKey("recipe.recipe_id", ondelete="CASCADE", onupdate="CASCADE")
+    )
+    name = Column(String, nullable=False)
+    serving_unit = Column(String)
+    serving_size = Column(String)
+
+
 

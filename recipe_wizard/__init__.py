@@ -10,7 +10,7 @@ def create_app(testing=False):
         app.config.from_object("recipe_wizard.config")
     
     with app.app_context():
-
+        app.logger
         database.register_database_commands(app)
         database.db.init_app(app)
 
