@@ -18,7 +18,7 @@ class IngredientSchema(SQLAlchemySchema):
     recipe_id = auto_field()
     name = auto_field()
     serving_unit = auto_field()
-    serving_size = auto_field()
+    servings = auto_field()
 
 class RecipeSchema(SQLAlchemySchema):
     class Meta:

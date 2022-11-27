@@ -1,0 +1,155 @@
+h2 {
+    color: green;
+}
+.recipe-entry-timeline {
+    list-style-type: none
+}
+
+.recipe-entry-timeline li {
+    display:inline;
+}
+
+.recipe-entry ul {
+    padding-left: 0;
+}
+
+.recipe-entry li {
+    display: inline;
+    padding-right: 10px;
+}
+
+.card {
+    width: 600px;
+    margin: 10px auto;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    padding: 7px;
+
+}
+
+/* create.html form styling */
+form {
+    border: 1px solid #ccc;
+    border-radius: 1em;
+    margin: 0 auto;
+    width: 600px;
+}
+
+hr {
+    width: 90%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-color: lightgreen;
+    border-width: 1px;
+}
+
+label {
+    font-weight: bold;
+}
+
+.form-section-header {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+    font-style: italic;
+}
+
+#abc {
+   margin: 0 auto;
+   padding-top: 10px;
+   margin-bottom: 10px;
+   text-align: center;
+   width: 90%;
+   display: block;
+   font-size: 2em;
+   border: none;
+   color: lightgreen;
+}
+
+.form-row {
+   width: 90%;
+   /*border: 1px solid #ccc;*/
+   margin: 7px auto;
+}
+
+.form-row label {
+   width: 90px;
+   /*background: red;*/
+   display: inline-block;
+   text-align: right;
+}
+
+.time-input,.rating-input {
+    width: 40px;
+}
+
+
+/* ingredients table styling */
+table {
+    table-layout: fixed;
+    width: 100%;
+    white-space:nowrap;
+    border-collapse: collapse;
+}
+
+.ingredients td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Table row styling */
+
+.row-ingredient {
+    width:55%;
+    text-align: left;
+}
+.row-amount {
+    width:10%;
+}
+.row-unit {
+    width:30%;
+}
+.row-button {
+    width:5%;
+}
+
+.ingredients thead tr {
+    color: black;
+    /*background: green;*/
+    /*color: white;*/
+}
+
+/* Embedded input styling */
+.ingredients input {
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+
+}
+
+/* Button styling */
+button {
+    color: white;
+    border-radius: 3px;
+    border-width: 0px;
+    
+}
+.plus-button {
+    background-color: green;
+}
+
+.delete-button {
+    background-color: red;
+    opacity: 50%;
+}
+#save-button {
+    border-color: green;
+    border-width: 2px;
+    color: green;
+    font-weight:bold;
+}
+
+textarea {
+    width: 100%;
+}

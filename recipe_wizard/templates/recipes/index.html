@@ -1,24 +1,61 @@
-{% extends "base.html" %}
-{% block header %}
-<h1>{% block title %}Recipes{% endblock %}</h1>
-{% endblock %}
+{% extends 'base.html' %}
 
 {% block content %}
-  {% for recipe in recipes %}
-    <article class="recipe">
-      <header>
-        <h1><a href="{{ url_for('web_api_bp.get_edit_recipe_page', recipe_id=recipe.recipe_id) }}">{{ recipe["name"] }}</a></h1>
-      </header>
-      <body>
-        <ul>
-          <li>Author: {{ recipe["author"] }}</li>
-          <li>Rating: {{ recipe["rating"] }}</li>
-          <li>Prep time: {{ recipe["prep_time"] }}</li>
-          <li>Cook time: {{ recipe["cook_time"] }}</li>
+    {% for recipe in recipes %}
+    <div class="card">
+      <article class="recipe-entry">
+        <h2 class="recipe-entry-title">{{ recipe['name'] }}</h2>
+        <p class="recipe-entry-author">{{ recipe['author'] }}</p>
+        <p class="recipe-entry-rating">Rating: {{ recipe['rating'] }}</p>
+        <ul class="recipe-entry-timeline">
+          <li><strong>Prep time:</strong> {{ recipe['prep_time'] }}</li>
+          <li><strong>Cook time:</strong> {{ recipe['cook_time'] }}</li>
         </ul>
-        <p>Instructions: {{ recipe["instructions"] }}</p>
-        <p>Ingredients: {{ recipe["ingredients"] }}</p>
-      </body>
-    </article>
-  {% endfor %}
+        <h4>Ingredients</h4>
+        <ul class="recipe-entry-ingredient-list">
+          {% for ingredient in recipe['ingredients'] %}
+          <ul class="recipe-entry-ingredient-details">
+            {% if ingredient["serving_unit"] is not none %}
+            <li>{{ ingredient["servings"]|int }} </li>
+            <li>{{ ingredient["serving_unit"] }} </li>
+            <li>{{ ingredient["name"] }} </li>
+            {% elif ingredient["servings"] is not none and ingredient["serving_unit"] is none %}
+            <li>{{ ingredient["servings"] }} </li>
+            <li>{{ ingredient["name"] }} </li>
+            {% elif ingredient["servings"] is none and ingredient["name"] is not none %}
+            <li>{{ ingredient["name"] }} </li>
+            {% endif %}
+          </ul>
+          {% endfor %}
+        </ul>
+        <h4>Instructions</h4>
+        <p class="recipe-entry-instructions">{{ recipe["instructions"] }}</p>
+        <br>
+      </article>
+    </div>
+    {% endfor %}
+
+
 {% endblock %}
+
+
+
+
+
+<!-- {% for recipe in recipes %}
+<article class="recipe">
+  <header>
+    <h1><a href="{{ url_for('web_api_bp.get_edit_recipe_page', recipe_id=recipe.recipe_id) }}">{{ recipe["name"] }}</a></h1>
+  </header>
+  <body>
+    <ul>
+      <li>Author: {{ recipe["author"] }}</li>
+      <li>Rating: {{ recipe["rating"] }}</li>
+      <li>Prep time: {{ recipe["prep_time"] }}</li>
+      <li>Cook time: {{ recipe["cook_time"] }}</li>
+    </ul>
+    <p>Instructions: {{ recipe["instructions"] }}</p>
+    <p>Ingredients: {{ recipe["ingredients"] }}</p>
+  </body>
+</article>
+{% endfor %} -->

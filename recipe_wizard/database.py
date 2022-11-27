@@ -52,8 +52,8 @@ def convert_recipe_dict_to_model(input_dict):
         ingredient.name = item["name"]
         if "serving_unit" in item:
             ingredient.serving_unit = item["serving_unit"]
-        if "serving_size" in item:
-            ingredient.serving_size = item["serving_size"]
+        if "servings" in item:
+            ingredient.servings = item["servings"]
         recipe.ingredients.append(ingredient)
     recipe.instructions = input_dict["instructions"]
     if "author" in input_dict:

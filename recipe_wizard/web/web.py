@@ -9,6 +9,18 @@ bp = Blueprint("web_api_bp", __name__)
 front_version = current_app.config.get("FRONT_VERSION")
 
 
+@bp.get(f"/front/{front_version}/recipes/<int:recipe_id>")
+def get_recipe_page(recipe_id):
+    session = db.session
+    stmt = (
+        select(Recipe)
+        .where(Recipe.recipe_id==recipe_id)
+    )
+    result = session.execute(stmt)
+    recipe = result.scalar() 
+    formatted_recipe = RecipeSchema().dump(recipe)
+    return render_template("recipes/index.html", recipe=formatted_recipe)
+
 @bp.get(f"/front/{front_version}/recipes")
 def get_recipes_page():
     session = db.session
@@ -19,6 +31,7 @@ def get_recipes_page():
     recipes = result.scalars()
 
     formatted_recipes = RecipeSchema().dump(recipes, many=True)
+    print(formatted_recipes)
     return render_template("recipes/index.html", recipes=formatted_recipes)
 
 @bp.get(f"/front/{front_version}/recipes/create")
@@ -30,7 +43,7 @@ def create_recipe():
     session = db.session
     try:
         new_recipe = Recipe()
-        new_recipe.name = request.form["name"]
+        new_recipe.name = request.form["form-ingredient-name"]
         for item in request.form["ingredients"]:
             ingredient = Ingredient()
             ingredient.name = item["name"]

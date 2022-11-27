@@ -1,0 +1,54 @@
+
+{% extends "base.html" %}
+{% block header %}
+<h1>{% block title %}Create{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<form>
+  <div class="form-row" id="title-row">
+      <input id="abc" placeholder="your recipe here">
+  </div>
+  <div class="form-row">
+      <label for="author">Author:</label>
+      <input type="text" id="author" name="author"><br>
+  </div>
+  <div class="form-row">
+      <label for="rating">Rating:</label>
+      <input type="text" name="rating"><br>
+  </div>
+  <div class="form-row">
+      <label for="prep_time">Prep time:</label>
+      <input type="text" name="prep_time" class="time-input">
+      <label for="cook_time">Cook time:</label>
+      <input type="text" name="cook_time" class="time-input">
+  </div>
+  <hr>
+  <div class="form-row">
+      <h2 class="form-section-header">Ingredients</h2>
+      <div class="form-ingredient-item">
+          <div class="form-inner-col" id="name-div">
+              <label for="ingredient_name">Ingredient</label>
+              <input type="text" name="ingredient_name">
+          </div>
+          <div class="form-inner-col" id="amount-div">
+              <label for="ingredient_amount">#</label>
+              <input type="text" name="ingredient_amount">
+          </div>
+          <div class="form-inner-col" id="unit-div">
+              <label for="ingredient_unit">Unit</label>
+              <input type="text" name="ingredient_unit">
+          </div>
+          <div class="form-inner-col" id="plus-sign-div">
+              <button type="button" id="plus_button">Add</button>
+          </div>
+      </div>
+  </div>
+  <hr>
+  <div class="form-row">
+      <h2 class="form-section-header">Instructions</h2>
+      <textarea name="instructions" rows="5" placeholder="do you know how to cook this?"></textarea>
+  </div>
+</form>
+
+{% endblock %}

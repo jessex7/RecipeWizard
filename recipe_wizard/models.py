@@ -34,7 +34,7 @@ class Ingredient(Base):
     )
     name = Column(String, nullable=False)
     serving_unit = Column(String)
-    serving_size = Column(String)
+    servings = Column(String)
 
 
 
