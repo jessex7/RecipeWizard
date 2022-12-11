@@ -46,14 +46,14 @@ def convert_recipe_dict_to_model(input_dict):
     from recipe_wizard.models import Recipe,Ingredient
     timestamp = datetime.now(timezone.utc)
     recipe = Recipe()
-    recipe.name = input_dict["name"]
+    recipe.recipe_name = input_dict["recipe_name"]
     for item in input_dict["ingredients"]:
         ingredient = Ingredient()
-        ingredient.name = item["name"]
-        if "serving_unit" in item:
-            ingredient.serving_unit = item["serving_unit"]
-        if "servings" in item:
-            ingredient.servings = item["servings"]
+        ingredient.ingredient_name = item["ingredient_name"]
+        if "unit" in item:
+            ingredient.unit = item["unit"]
+        if "amount" in item:
+            ingredient.amount = item["amount"]
         recipe.ingredients.append(ingredient)
     recipe.instructions = input_dict["instructions"]
     if "author" in input_dict:

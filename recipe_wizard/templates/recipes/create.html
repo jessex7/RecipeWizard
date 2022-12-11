@@ -6,7 +6,7 @@
 {% block content %}
 <form id="recipe-form">
     <div class="form-row" id="title-row">
-        <input name="recipe_name" id="abc" placeholder="your recipe here">
+        <input name="recipe_name" id="recipe_name" placeholder="your recipe here">
     </div>
     <div class="form-row">
         <label for="author">Author:</label>
@@ -14,13 +14,13 @@
     </div>
     <div class="form-row">
         <label for="rating">Rating:</label>
-        <input class="rating-input" type="number" name="rating" min="1" max="5"><br>
+        <input id="rating" class="rating-input" type="number" name="rating" min="1" max="5"><br>
     </div>
     <div class="form-row">
         <label for="prep_time">Prep time:</label>
-        <input type="text" name="prep_time" class="time-input">
+        <input type="text" id="prep_time" name="prep_time" class="time-input">
         <label for="cook_time">Cook time:</label>
-        <input type="text" name="cook_time" class="time-input">
+        <input type="text" id="cook_time" name="cook_time" class="time-input">
     </div>
     <hr>
     <div class="form-row" id="ingredient-container">
@@ -35,25 +35,30 @@
               </tr>
           </thead>
           <tbody>
-              <tr class="input-row">
+            <tr class="standard-row">
+                <td class="row-ingredient"><input name="ingredient-name" type="text" class="ingredient-name-input" value="{{ ingredient.ingredient_name }}"></td>
+                <td class="row-amount "><input name="ingredient-amount" type="number" class="ingredient-amount-input" value="{{ ingredient.amount }}"></td>
+                <td class="row-unit"><input name ="ingredient-unit" type="text" class="ingredient-unit-input" value="{{ ingredient.unit }}"></td>
+                <td class="row-button"><Button type="button" class="delete-button">x</Button></td>
+            </tr>
+              <!-- <tr class="input-row">
                   <td class="ingredient-name"><input name="ingredient-name[]" type="text" class="ingredient-name-input"></td>
                   <td class="ingredient-amount"><input name="ingredient-amount[]" type="number" class="ingredient-amount-input"></td>
                   <td class="ingredient-unit"><input name ="ingredient-unit[]" type="text" class="ingredient-unit-input"></td>
                   <td class="plus-button-container"><Button type="button" class="plus-button">+</Button></td>
-              </tr>
+              </tr> -->
           </tbody>
         </table> 
       </div>
     <hr>
     <div class="form-row">
         <h2 class="form-section-header">Instructions</h2>
-        <textarea name="instructions" rows="5" placeholder="do you know how to cook this?"></textarea>
+        <textarea id="instructions" name="instructions" rows="5" placeholder="do you know how to cook this?"></textarea>
     </div>
     <div class="form-row">
-        <button id="save-button" formmethod="post" formaction="{{ url_for('web_api_bp.create_recipe') }}">Save</button>
-        <!--<button id="save-button" formmethod="post" formaction="127.0.0.1:5000/front/v0.1/recipes/create">Save</button> -->
-
+        <button id="save-button" type="button">Save</button>
     </div>
+    <p id="post-endpoint" hidden>{{ url_for('web_api_bp.create_recipe') }}</p>
 
 </form>
 

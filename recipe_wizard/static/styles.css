@@ -1,78 +1,86 @@
-h2 {
-    color: green;
-}
+
 .recipe-entry-timeline {
-    list-style-type: none
+    list-style-type: none;
+    padding-left: 0
 }
 
 .recipe-entry-timeline li {
     display:inline;
+    margin-right: 20px;
 }
 
-.recipe-entry ul {
-    padding-left: 0;
-}
 
-.recipe-entry li {
-    display: inline;
-    padding-right: 10px;
-}
 
-.card {
-    width: 600px;
-    margin: 10px auto;
-    border: 1px solid #ccc;
-    border-radius: 7px;
-    padding: 7px;
 
-}
 
-/* create.html form styling */
+/* create.html & edit.html form styling, recipe card styling */
 form {
     border: 1px solid #ccc;
     border-radius: 1em;
-    margin: 0 auto;
+    margin: 20px auto;
     width: 600px;
+}
+
+.card, .recipe-form {
+    width: 600px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    border-radius: 1em;
+    padding: 7px;
 }
 
 hr {
     width: 90%;
     margin-top: 15px;
     margin-bottom: 15px;
-    border-color: lightgreen;
     border-width: 1px;
 }
+.card-separator {
+    width: 650px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-width: 1px;
+    border-color: green;
+}
+
 
 label {
     font-weight: bold;
 }
 
-.form-section-header {
+.form-section-header, .card-section-header {
     margin-top: 0px;
     margin-bottom: 10px;
     font-size: 1.3em;
     font-style: italic;
+    color: green
 }
 
-#abc {
-   margin: 0 auto;
-   padding-top: 10px;
-   margin-bottom: 10px;
+#recipe_name {
+   margin-bottom:20px;
+   width: 88%;
    text-align: center;
-   width: 90%;
-   display: block;
-   font-size: 2em;
-   border: none;
-   color: lightgreen;
 }
 
-.form-row {
-   width: 90%;
+.recipe-entry-title {
+    margin: 0;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    width: 88%;
+    display: inline-block;
+    font-size: 2em;
+    border: none;
+    color: green;
+}
+
+
+.form-row, .card-row {
+   width: 95%;
    /*border: 1px solid #ccc;*/
-   margin: 7px auto;
+   margin: 3px auto;
 }
 
-.form-row label {
+.form-row label, .card-row label {
    width: 90px;
    /*background: red;*/
    display: inline-block;
@@ -102,7 +110,6 @@ table {
 
 .row-ingredient {
     width:55%;
-    text-align: left;
 }
 .row-amount {
     width:10%;
@@ -128,28 +135,59 @@ table {
 
 }
 
+.ingredient-amount-input, .ingredient-unit-input {
+    text-align: center;
+}
+
+/* Embedded paragraph styling */
+.ingredients p {
+    margin: 0 auto;
+}
+
 /* Button styling */
 button {
-    color: white;
     border-radius: 3px;
     border-width: 0px;
-    
+    background-color: white;
 }
 .plus-button {
     background-color: green;
 }
 
-.delete-button {
-    background-color: red;
-    opacity: 50%;
-}
-#save-button {
+.add-row-button {
+    margin-top: 10px;
     border-color: green;
     border-width: 2px;
-    color: green;
+    color: white;
+    background-color: green;
     font-weight:bold;
+    width: 15%;
+}
+
+.delete-row-btn {
+    background-color: red;
+    opacity: 40%;
+    color: white
+}
+#save-button {
+    display: inline-block;
+}
+.delete-recipe-button, .edit-recipe-button {
+    display: inline-block;
+    
 }
 
 textarea {
     width: 100%;
+    margin-bottom: 20px;
 }
+
+/* edit.html specific styling */
+
+.chill-input {
+    border: none;
+ }
+
+ a:-webkit-any-link {
+    text-decoration: none;
+ }

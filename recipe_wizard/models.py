@@ -13,15 +13,15 @@ from recipe_wizard.database import Base
 class Recipe(Base):
     __tablename__ = "recipe"
     recipe_id = Column(Integer, primary_key=True) 
-    name = Column(String, nullable=False)
+    recipe_name = Column(String, nullable=False)
     instructions = Column(String, nullable=False)
     rating = Column(Integer)
     image_location = Column(String)
     created_at = Column(DateTime)
     modified_at = Column(DateTime)
     author = Column(String)
-    prep_time = Column(Float)
-    cook_time = Column(Float)
+    prep_time = Column(String)
+    cook_time = Column(String)
     ingredients = relationship(
         "Ingredient", cascade="all, delete-orphan"
     )
@@ -32,9 +32,9 @@ class Ingredient(Base):
     recipe_id = Column(
         Integer, ForeignKey("recipe.recipe_id", ondelete="CASCADE", onupdate="CASCADE")
     )
-    name = Column(String, nullable=False)
-    serving_unit = Column(String)
-    servings = Column(String)
+    ingredient_name = Column(String, nullable=False)
+    unit = Column(String)
+    amount = Column(Float)
 
 
 

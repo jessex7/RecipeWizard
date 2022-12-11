@@ -1,28 +1,28 @@
 [
     {
-        "name": "Dan Dan Noodles",
+        "recipe_name": "Dan Dan Noodles",
         "instructions": "Brown pork in pan. Grate ginger, prepare veggies. Boil water, cook egg noodles. Prepare sauce. Mix sauce, ginger, and veggies into pan with pork",
         "ingredients": [
             {
-                "name":"Ginger"
+                "ingredient_name":"Ginger"
             },
             {
-                "name":"Egg Noodles"
+                "ingredient_name":"Egg Noodles"
             },
             {
-                "name":"Ground Pork"
+                "ingredient_name":"Ground Pork"
             },
             {
-                "name":"Soy Sauce"
+                "ingredient_name":"Soy Sauce"
             },
             {
-                "name":"Chili Oil"
+                "ingredient_name":"Chili Oil"
             },
             {
-                "name":"Bell peppers"
+                "ingredient_name":"Bell peppers"
             },
             {
-                "name":"Zucchini"
+                "ingredient_name":"Zucchini"
             }
         ],
         "prep_time":5.0,
@@ -34,56 +34,56 @@
         "image_location":"dan_dan_noodles.jpeg"
     },
     {
-        "name": "Korean Beef",
+        "recipe_name": "Korean Beef",
         "instructions": "Combine the soy sauce, 2 tablespoons water, brown sugar, sesame oil and red pepper flakes in a small bowl. Heat a large deep nonstick skillet over high heat, spray with oil and add the ground beef. Cook, breaking the meat up with a wooden spoon until cooked through, about 5 minutes. Add the onion, garlic and ginger and cook 1 minute.Pour the sauce over the beef, cover and simmer on low heat 10 minutes.To assemble the bowls, place 3/4 cup rice in each bowl, top with scant 2/3 cup beef, cucumbers, Gochujong, sesame seeds and scallions.",
         "ingredients": [
             {
-                "name":"Ginger - grated",
-                "serving_unit":"tsp",
-                "servings":1.0
+                "ingredient_name":"Ginger - grated",
+                "unit":"tsp",
+                "amount":1.0
             },
             {
-                "name":"Rice",
-                "serving_unit":"cup(s)",
-                "servings":2.0
+                "ingredient_name":"Rice",
+                "unit":"cup(s)",
+                "amount":2.0
             },
             {
-                "name":"Ground Beef",
-                "serving_unit":"lb",
-                "servings":1.0
+                "ingredient_name":"Ground Beef",
+                "unit":"lb",
+                "amount":1.0
             },
             {
-                "name":"Soy Sauce",
-                "serving_unit":"cup(s)",
-                "servings":0.25
+                "ingredient_name":"Soy Sauce",
+                "unit":"cup(s)",
+                "amount":0.25
             },
             {
-                "name":"Bell Pepper - sliced",
-                "servings":1.0
+                "ingredient_name":"Bell Pepper - sliced",
+                "amount":1.0
             },
             {
-                "name":"Zucchini - sliced",
-                "servings":1.0
+                "ingredient_name":"Zucchini - sliced",
+                "amount":1.0
             },
             {
-                "name":"Red Pepper Flakes",
-                "serving_unit":"tsp",
-                "servings":0.5
+                "ingredient_name":"Red Pepper Flakes",
+                "unit":"tsp",
+                "amount":0.5
             },
             {
-                "name":"Onion - diced",
-                "serving_unit":"cup(s)",
-                "servings":0.25
+                "ingredient_name":"Onion - diced",
+                "unit":"cup(s)",
+                "amount":0.25
             },
             {
-                "name":"Sesame Oil",
-                "serving_unit":"tsp",
-                "servings":1.0                
+                "ingredient_name":"Sesame Oil",
+                "unit":"tsp",
+                "amount":1.0                
             },
             {
-                "name":"Garlic - crushed",
-                "serving_unit":"clove(s)",
-                "servings":2.0                           
+                "ingredient_name":"Garlic - crushed",
+                "unit":"clove(s)",
+                "amount":2.0                           
             }
         ],
         "prep_time":7.0,
@@ -95,73 +95,73 @@
         "image_location":"korean_beef_bowl.jpeg"
     },
     {
-        "name": "American Goulash",
+        "recipe_name": "American Goulash",
         "instructions": "Heat oil in a large saucepan over medium-high heat. Add onion and beef; cook, breaking up meat with a wooden spoon, until no longer pink, about 5 minutes. Add garlic, paprika, Italian seasoning, salt and pepper; cook, stirring, for 1 minute. Stir in tomatoes and their juices, tomato sauce and broth. Bring to a boil. Reduce heat to medium-low, cover and cook for 5 minutes. Add macaroni and cook, uncovered, stirring occasionally, until tender, 6 to 9 minutes. Remove from heat and let stand for 5 minutes before serving. Sprinkle with Parmesan, if desired.",
         "ingredients": [
             {
-                "name":"Avocado Oil",
-                "serving_unit":"tbsp",
-                "servings":1.0
+                "ingredient_name":"Avocado Oil",
+                "unit":"tbsp",
+                "amount":1.0
             },
             {
-                "name":"Chopped onion",
-                "serving_unit":"cup(s)",
-                "servings": 1.5
+                "ingredient_name":"Chopped onion",
+                "unit":"cup(s)",
+                "amount": 1.5
             },
             {
-                "name":"Ground Beef",
-                "serving_unit":"lb",
-                "servings":1.0
+                "ingredient_name":"Ground Beef",
+                "unit":"lb",
+                "amount":1.0
             },  
             {
-                "name":"Garlic",
-                "serving_unit":"clove(s)",
-                "servings":2.0
+                "ingredient_name":"Garlic",
+                "unit":"clove(s)",
+                "amount":2.0
             },       
             {
-                "name":"Paprika",
-                "serving_unit":"tsp",
-                "servings":2.0
+                "ingredient_name":"Paprika",
+                "unit":"tsp",
+                "amount":2.0
             },
             {
-                "name":"Italian Seasoning",
-                "serving_unit":"tsp",
-                "servings":1.0
+                "ingredient_name":"Italian Seasoning",
+                "unit":"tsp",
+                "amount":1.0
             },        
             {
-                "name":"Salt",
-                "serving_unit":"tsp",
-                "servings":1.0
+                "ingredient_name":"Salt",
+                "unit":"tsp",
+                "amount":1.0
             },
             {
-                "name":"Ground Pepper",
-                "serving_unit":"tsp",
-                "servings":0.25
+                "ingredient_name":"Ground Pepper",
+                "unit":"tsp",
+                "amount":0.25
             },        
             {
-                "name":"Diced tomatoes",
-                "serving_unit":"oz",
-                "servings":14
+                "ingredient_name":"Diced tomatoes",
+                "unit":"oz",
+                "amount":14
             },               
             {
-                "name":"Tomato sauce",
-                "serving_unit":"oz",
-                "servings":8
+                "ingredient_name":"Tomato sauce",
+                "unit":"oz",
+                "amount":8
             },        
             {
-                "name":"Beef broth",
-                "serving_unit":"cup(s)",
-                "servings":1
+                "ingredient_name":"Beef broth",
+                "unit":"cup(s)",
+                "amount":1
             },
             {
-                "name":"Rotini Pasta",
-                "serving_unit":"lb",
-                "servings":1
+                "ingredient_name":"Rotini Pasta",
+                "unit":"lb",
+                "amount":1
             },        
             {
-                "name":"Grated parmesan cheese",
-                "serving_unit":"tbsp",
-                "servings":2.0
+                "ingredient_name":"Grated parmesan cheese",
+                "unit":"tbsp",
+                "amount":2.0
             }                                  
         ],
         "prep_time":null,
