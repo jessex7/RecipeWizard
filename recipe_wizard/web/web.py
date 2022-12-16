@@ -46,7 +46,7 @@ def create_recipe():
         new_recipe = schema.load(incoming_data, session=db.session)
         db.session.add(new_recipe)
         db.session.commit()
-        redirect(url_for(get_recipes_page()))
+        return redirect(url_for("web_api_bp.get_recipes_page"))
     except Exception as error:
         print(error.args)
         print(error)
@@ -111,3 +111,15 @@ def delete_recipe(recipe_id):
     except Exception as error:
         print(error)
         abort(404)
+
+@bp.get(f"/front/{front_version}/recipes/selection")
+def get_recipe_selection_page():
+    session = db.session
+    stmt = (
+        select(Recipe)
+    )
+    result = session.execute(stmt)
+    recipes = result.scalars()
+    formatted_recipes = RecipeSchema().dump(recipes, many=True)
+    return render_template("recipes/selection.html", recipes=formatted_recipes)
+

@@ -1,0 +1,43 @@
+{% macro create_or_edit(name, author, rating, prep_time, cook_time, ingredients, instructions) %}
+    <div class="form-row">
+        <label for="rating">Rating:</label>
+        <input id="rating" class="rating-input chill-input" type="number" name="rating" min="1" max="5" value="{{ rating|default(1) }}"><br>
+    </div>
+    <div class="form-row">
+        <label for="prep_time">Prep time:</label>
+        <input type="text" id="prep_time" name="prep_time" class="time-input chill-input" value="{{ prep_time|default('') }}">
+        <label for="cook_time">Cook time:</label>
+        <input type="text" id="cook_time" name="cook_time" class="time-input chill-input" value="{{ cook_time|default('') }}">
+    </div>
+    <hr>
+    <div class="form-row" id="ingredient-container">
+        <h2 class="form-section-header">Them Materials</h2>
+        <table class="ingredients">
+        <tbody>
+            {% if ingredients is defined %}
+                {% for ingredient in ingredients %}
+                <tr class="standard-row">
+                    <td class="row-ingredient"><input name="ingredient-name" type="text" class="ingredient-name-input" value="{{ ingredient.ingredient_name or '' }}"></td>
+                    <td class="row-amount "><input name="ingredient-amount" type="number" min="0" class="ingredient-amount-input" value="{{ ingredient.amount or '' }}"></td>
+                    <td class="row-unit"><input name ="ingredient-unit" type="text" class="ingredient-unit-input" value="{{ ingredient.unit or ''}}"></td>
+                    <td class="row-button"><Button type="button" class="delete-row-btn">x</Button></td>
+                </tr>
+                {% endfor %}
+            {% else %}
+            <tr class="standard-row">
+                <td class="row-ingredient"><input name="ingredient-name" type="text" class="ingredient-name-input"></td>
+                <td class="row-amount "><input name="ingredient-amount" type="number" class="ingredient-amount-input"></td>
+                <td class="row-unit"><input name ="ingredient-unit" type="text" class="ingredient-unit-input"></td>
+                <td class="row-button"><Button type="button" class="delete-row-btn">x</Button></td>
+            </tr>
+            {% endif %}
+        </tbody>
+        </table> 
+        <button type="button" class="add-row-btn">Add Row</button>
+    </div>
+    <hr>
+    <div class="form-row">
+        <h2 class="form-section-header">Instructions</h2>
+        <textarea id="instructions" name="instructions" rows="5">{{ instructions|default('') }}</textarea>
+    </div>
+{% endmacro %}

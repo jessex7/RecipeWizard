@@ -6,61 +6,26 @@
 {% block content %}
 <form id="recipe-form">
     <div class="form-row" id="title-row">
-        <input name="recipe_name" id="recipe_name" class="chill-input recipe-entry-title" value="{{ recipe.recipe_name }}">
-        <button id="save-button" type="button">
+        <input name="recipe_name" class="chill-input recipe-title" value="{{ recipe.recipe_name }}">
+        <button class="save-btn" type="button">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16">
                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                 <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-              </svg>
+            </svg>
+            <a href="{{ url_for('web_api_bp.edit_recipe', recipe_id=recipe.recipe_id) }}" hidden></a>
         </button>
-        <button class="delete-recipe-button" type="button">
+        <button class="delete-recipe-btn" type="button">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">
                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                 <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
             </svg>
+            <a href="{{ url_for('web_api_bp.delete_recipe', recipe_id=recipe.recipe_id) }}" hidden></a>
         </button>
     </div>
     <div class="form-row">
-        <label for="author">Author:</label>
         <input type="text" id="author" name="author" class="chill-input" value="{{ recipe.author }}"><br>
     </div>
-    <div class="form-row">
-        <label for="rating">Rating:</label>
-        <input id="rating" class="rating-input chill-input" type="number" name="rating" min="1" max="5" value="{{ recipe.rating }}"><br>
-    </div>
-    <div class="form-row">
-        <label for="prep_time">Prep time:</label>
-        <input type="text" id="prep_time" name="prep_time" class="time-input chill-input" value="{{ recipe.prep_time }}">
-        <label for="cook_time">Cook time:</label>
-        <input type="text" id="cook_time" name="cook_time" class="time-input chill-input" value="{{ recipe.cook_time }}">
-    </div>
-    <hr>
-    <div class="form-row" id="ingredient-container">
-        <h2 class="form-section-header">Them Materials</h2>
-        <table class="ingredients">
-          <tbody>
-            {% for ingredient in recipe['ingredients'] %}
-              <tr class="standard-row">
-                  <td class="row-ingredient"><input name="ingredient-name" type="text" class="ingredient-name-input" value="{{ ingredient.ingredient_name }}"></td>
-                  <td class="row-amount "><input name="ingredient-amount" type="number" class="ingredient-amount-input" value="{{ ingredient.amount }}"></td>
-                  <td class="row-unit"><input name ="ingredient-unit" type="text" class="ingredient-unit-input" value="{{ ingredient.unit }}"></td>
-                  <td class="row-button"><Button type="button" class="delete-row-btn">x</Button></td>
-                </tr>
-            {% endfor %}
-          </tbody>
-        </table> 
-        <button id="add-ingredient-row-button" type="button" class="add-row-button">Add Row</button>
-      </div>
-    <hr>
-    <div class="form-row">
-        <h2 class="form-section-header">Instructions</h2>
-        <textarea id="instructions" name="instructions" rows="5">{{ recipe.instructions }}</textarea>
-    </div>
-    <div class="form-row">
-
-    </div>
-    <!-- <p id="post-endpoint" hidden>{{ url_for('web_api_bp.create_recipe') }}</p> -->
-
+    {{ macros.create_or_edit(recipe.recipe_name, recipe.author, recipe.rating, recipe.prep_time, recipe.cook_time, recipe.ingredients, recipe.instructions) }}
 </form>
 
 {% endblock %}

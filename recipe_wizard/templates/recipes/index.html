@@ -5,19 +5,19 @@
     <div class="card">
       <article class="recipe-entry">
         <div class="card-row">
-          <h2 class="recipe-entry-title">{{ recipe['recipe_name'] }}</h2>
-
-          <a href="{{ url_for('web_api_bp.get_edit_recipe_page', recipe_id=recipe['recipe_id']) }}">
+          <h2 class="recipe-title">{{ recipe['recipe_name'] }}</h2>
+          <a class="edit-link" href="{{ url_for('web_api_bp.get_edit_recipe_page', recipe_id=recipe['recipe_id']) }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-pencil" viewBox="0 0 16 16">
                 <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
             </svg>
           </a>
-          <button class="delete-recipe-button" type="button">
+          <button class="delete-recipe-btn" type="button">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">
                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                 <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
             </svg>
-          </button>
+            <a href="{{ url_for('web_api_bp.delete_recipe', recipe_id=recipe.recipe_id) }}" hidden></a>
+        </button>
         </div>
         <div class="card-row">
           <p class="recipe-entry-author">{{ recipe['author'] }}</p>
@@ -39,8 +39,8 @@
               {% for ingredient in recipe['ingredients'] %}
                 <tr class="standard-row">
                     <td class="row-ingredient"><p>{{ ingredient.ingredient_name }}</p></td>
-                    <td class="row-amount "><p>{{ ingredient.amount }}</p></td>
-                    <td class="row-unit"><p>{{ ingredient.unit }}</p></td>
+                    <td class="row-amount"><p>{{ ingredient.amount if ingredient.amount }}</p></td>
+                    <td class="row-unit"><p>{{ ingredient.unit if ingredient.unit }}</p></td>
                     <td class="row-button"></td>
                   </tr>
               {% endfor %}
@@ -52,10 +52,12 @@
           <h2 class="card-section-header">Instructions</h2>
           <p class="recipe-entry-instructions">{{ recipe["instructions"] }}</p>
         </div>
-        <a class="edit-link" href="{{ url_for('web_api_bp.get_edit_recipe_page', recipe_id=recipe['recipe_id']) }}"></a>
+        <a class="hidden-link delete-recipe-link" href="{{ url_for('web_api_bp.delete_recipe', recipe_id=recipe['recipe_id']) }}"></a>
       </article>
     </div>
+    {% if not loop.last %}
     <hr class="card-separator">
+    {% endif %}
     {% endfor %}
     <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}">
 

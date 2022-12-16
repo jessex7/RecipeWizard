@@ -1,3 +1,5 @@
+{% import "macros.html" as macros %}
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,10 +15,19 @@
   <title>RecipeWizard</title>
 </head>
 <body>
+  <nav class="menu">
+    <ul class="nav">
+      <li><a href="{{ url_for('web_api_bp.get_recipes_page') }}">Home</a></li>
+      <li><a href="{{ url_for('web_api_bp.get_create_recipe_page') }}">New</a> </li>
+      <li><a href="{{ url_for('web_api_bp.get_recipe_selection_page') }}">List</a></li>
+    </ul>
+  </nav>
+  <div class="content-container">
     {% block content %}
     {% endblock %}
     {% block scripts %}
       <script src="{{ url_for('static', filename='script.js') }}" defer></script>
     {% endblock %}
+  </div>
 </body>
 </html>

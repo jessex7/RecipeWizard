@@ -8,10 +8,11 @@ Things to do:
 - [x] Complete first rev of frontend views for above functionality
 - [x] Write "happy" tests for basic endpoints
 - [ ] Write "happy" tests for basic frontend views
-- [ ] Make the frontend views less horrifically ugly - probs incorporate css framework
+- [x] Make the frontend views less horrifically ugly - probs incorporate css framework
 
-   - [ ] Main/index page 
-   - [ ] Edit page -- make delete form a little trashcan icon and move it to index page
+   - [x] Main/index page 
+   - [x] Edit page -- make delete form a little trashcan icon and move it to index page
+   - [x] Create page
 
 - [ ] Add logging to existing codebase
 - [ ] Incorporate an authentication & authorization solution
@@ -32,6 +33,7 @@ Things to do:
 - [ ] Deployable as docker container
 - [ ] Deploy to AWS, google cloud, or linode
 - [ ] Integrate terraform
+- [ ] Do a quick analysis of website against OWASP top 10 vulnerabilities 
 
 
 

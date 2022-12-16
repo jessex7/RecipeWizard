@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-1">
+
+    <div class="selections-container">
+        {% for recipe in recipes %}
+            <h2>{{ recipe.recipe_name }}</h2>
+            <p>{{ recipe.author }}</p>
+            <p>{{ recipe.rating }}</p>
+        {% endfor %}
+
+    </div>
+    <div class="list-container">
+
+    </div>
+</div>
+
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}">
+
+{% endblock %}
