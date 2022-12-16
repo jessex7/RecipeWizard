@@ -21,12 +21,12 @@ if (document.querySelector('.edit-link') != null) {
 
 function saveData() {
     let recipe = {
-        recipe_name: document.querySelector('#recipe_name').value,
-        author: document.querySelector('#author').value,
-        rating: document.querySelector('#rating').value,
-        prep_time: document.querySelector('#prep_time').value,
-        cook_time: document.querySelector('#cook_time').value,
-        instructions: document.querySelector('#instructions').value,
+        recipe_name: document.querySelector('.recipe-title').value,
+        author: document.querySelector('.author-input').value,
+        rating: document.querySelector('.rating-input').value,
+        prep_time: document.querySelector('.prep-time-input').value,
+        cook_time: document.querySelector('.cook-time-input').value,
+        instructions: document.querySelector('.instructions-input').value,
     };
 
     const tbody = document.querySelector('tbody');

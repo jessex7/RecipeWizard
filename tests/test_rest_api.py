@@ -28,7 +28,7 @@ def test_get_specific_recipe(client, app):
     assert response.status_code == 200
     json_data = response.get_json()
     recipe = json_data["data"][0]
-    assert recipe["name"] == "Dan Dan Noodles"
+    assert recipe["recipe_name"] == "Dan Dan Noodles"
 
 def test_post_recipe(client, app):
     ## arrange
@@ -38,20 +38,20 @@ def test_post_recipe(client, app):
     endpoint = "/".join([SITE_ADDRESS, "api", API_VERSION, "recipes"])
 
     sample_recipe = {
-        "name": "Breakfast bagel",
+        "recipe_name": "Breakfast bagel",
         "author": "Joe",
         "ingredients": [
                 {
-                    "name":"Plain bagel",
-                    "serving_unit":"Bagel",
-                    "serving_size":"1"
+                    "ingredient_name":"Plain bagel",
+                    "unit":"Bagel",
+                    "amount":"1"
                 },
                 {
-                    "name":"Eggs",
-                    "serving_unit":"Egg",
-                    "serving_size":"3"
+                    "ingredient_name":"Eggs",
+                    "unit":"Egg",
+                    "amount":"3"
                 },
-                {"name":"Cheddar cheese"}
+                {"ingredient_name":"Cheddar cheese"}
             ],
         "instructions": "Make eggs, toast bagel, put eggs on bagel",
         "prep_time": 1.0,
@@ -71,7 +71,7 @@ def test_post_recipe(client, app):
 
     ## assert
     assert response.status_code == 200
-    assert second_response.status_code == 200    
+    assert second_response.status_code == 200
 
 def test_delete_recipe(client, app):
     ## arrange

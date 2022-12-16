@@ -34,6 +34,7 @@ Things to do:
 - [ ] Deploy to AWS, google cloud, or linode
 - [ ] Integrate terraform
 - [ ] Do a quick analysis of website against OWASP top 10 vulnerabilities 
+- [ ] Default textarea html control does not support line breaks. Need to figure out how to best support that.
 
 
 

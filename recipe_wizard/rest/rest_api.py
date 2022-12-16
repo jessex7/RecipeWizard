@@ -45,14 +45,14 @@ def post_recipe():
     session = db.session
     try:
         new_recipe = Recipe()
-        new_recipe.name = json_data["name"]
+        new_recipe.recipe_name = json_data["recipe_name"]
         for item in json_data["ingredients"]:
             ingredient = Ingredient()
-            ingredient.name = item["name"]
-            if "serving_unit" in item:
-                ingredient.serving_unit = item["serving_unit"]
-            if "serving_size" in item:
-                ingredient.serving_size = item["serving_size"]
+            ingredient.ingredient_name = item["ingredient_name"]
+            if "unit" in item:
+                ingredient.unit = item["unit"]
+            if "amount" in item:
+                ingredient.amount = item["amount"]
             new_recipe.ingredients.append(ingredient)
         if "instructions" in json_data:
             new_recipe.instructions = json_data["instructions"]
@@ -94,14 +94,14 @@ def update_recipe(recipe_id):
         )
         result = session.execute(stmt)
         recipe = result.scalar()
-        recipe.name = json_data["name"]
+        recipe.name = json_data["recipe_name"]
         for item in json_data["ingredients"]:
             ingredient = Ingredient()
-            ingredient.name = item["name"]
-            if "serving_unit" in item:
-                ingredient.serving_unit = item["serving_unit"]
-            if "serving_size" in item:
-                ingredient.serving_size = item["serving_size"]
+            ingredient.ingredient_name = item["ingredient_name"] # this should be raising an error during testing
+            if "unit" in item:
+                ingredient.unit = item["unit"]
+            if "amount" in item:
+                ingredient.amount = item["amount"]
             recipe.ingredients.append(ingredient)
         if "instructions" in json_data:
             recipe.instructions = json_data["instructions"]

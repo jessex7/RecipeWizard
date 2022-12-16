@@ -1,13 +1,13 @@
 {% macro create_or_edit(name, author, rating, prep_time, cook_time, ingredients, instructions) %}
     <div class="form-row">
         <label for="rating">Rating:</label>
-        <input id="rating" class="rating-input chill-input" type="number" name="rating" min="1" max="5" value="{{ rating|default(1) }}"><br>
+        <input class="rating-input chill-input" type="number" name="rating" min="1" max="5" value="{{ rating|default(1) }}"><br>
     </div>
     <div class="form-row">
         <label for="prep_time">Prep time:</label>
-        <input type="text" id="prep_time" name="prep_time" class="time-input chill-input" value="{{ prep_time|default('') }}">
+        <input type="text" name="prep_time" class="time-input prep-time-input chill-input" value="{{ prep_time|default('') }}">
         <label for="cook_time">Cook time:</label>
-        <input type="text" id="cook_time" name="cook_time" class="time-input chill-input" value="{{ cook_time|default('') }}">
+        <input type="text" name="cook_time" class="time-input cook-time-input chill-input" value="{{ cook_time|default('') }}">
     </div>
     <hr>
     <div class="form-row" id="ingredient-container">
@@ -38,6 +38,6 @@
     <hr>
     <div class="form-row">
         <h2 class="form-section-header">Instructions</h2>
-        <textarea id="instructions" name="instructions" rows="5">{{ instructions|default('') }}</textarea>
+        <textarea class="instructions-input" name="instructions" rows="5">{{ instructions|default('') }}</textarea>
     </div>
 {% endmacro %}

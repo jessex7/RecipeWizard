@@ -23,7 +23,7 @@
         </button>
     </div>
     <div class="form-row">
-        <input type="text" id="author" name="author" class="chill-input" value="{{ recipe.author }}"><br>
+        <input type="text" name="author" class="chill-input author-input" value="{{ recipe.author }}"><br>
     </div>
     {{ macros.create_or_edit(recipe.recipe_name, recipe.author, recipe.rating, recipe.prep_time, recipe.cook_time, recipe.ingredients, recipe.instructions) }}
 </form>
