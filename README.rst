@@ -1,3 +1,6 @@
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+   :target: https://github.com/psf/black
+   
 **Recipe Wizard**
 
 A playground app to learn more about various technologies in the python ecosystem. Should help meal planning, grocery list generation, and recipe management.

@@ -1,10 +1,6 @@
-from datetime import datetime
-from marshmallow import ValidationError, fields, validates, Schema
-from marshmallow.fields import DateTime
-from marshmallow.decorators import post_load
-from marshmallow_sqlalchemy import SQLAlchemySchema, auto_field, load_instance_mixin
+from marshmallow import fields
+from marshmallow_sqlalchemy import SQLAlchemySchema, auto_field
 from marshmallow_sqlalchemy.fields import Nested
-
 
 
 from recipe_wizard.models import (
@@ -24,6 +20,7 @@ class IngredientSchema(SQLAlchemySchema):
     unit = auto_field()
     amount = auto_field()
 
+
 class RecipeSchema(SQLAlchemySchema):
     class Meta:
         model = Recipe
@@ -39,6 +36,5 @@ class RecipeSchema(SQLAlchemySchema):
     created_at = auto_field()
     modified_at = auto_field()
     author = auto_field()
-    # ingredients = fields.Nested(IngredientSchema(exclude=("recipe_id",)), many=True)
     ingredients = fields.List(Nested(IngredientSchema))
     instructions = auto_field()

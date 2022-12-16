@@ -5,7 +5,6 @@ from recipe_wizard import create_app
 from recipe_wizard.database import init_db, insert_recipes
 
 
-
 @pytest.fixture
 def app():
     db_file_descriptor, db_path = mkstemp()
@@ -22,4 +21,3 @@ def app():
 @pytest.fixture
 def client(app):
     return app.test_client()
-

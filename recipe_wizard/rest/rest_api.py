@@ -1,5 +1,9 @@
 from datetime import datetime, timezone
-from flask import Blueprint, current_app, request, redirect, url_for, render_template, abort
+from flask import (
+    Blueprint,
+    current_app,
+    request,
+)
 from sqlalchemy.sql.expression import select, delete
 from recipe_wizard.database import db
 from recipe_wizard.models import Recipe, Ingredient
@@ -12,9 +16,7 @@ api_version = current_app.config.get("API_VERSION")
 @bp.get(f"/api/{api_version}/recipes")
 def get_recipes():
     session = db.session
-    stmt = (
-        select(Recipe)
-    )
+    stmt = select(Recipe)
     result = session.execute(stmt)
     recipes = result.scalars()
     formatted_recipes = RecipeSchema().dump(recipes, many=True)
@@ -26,18 +28,15 @@ def get_recipes_by_id(recipe_id):
     session = db.session
     try:
         id = int(recipe_id)
-        stmt = (
-            select(Recipe)
-            .where(Recipe.recipe_id == id)
-        )
+        stmt = select(Recipe).where(Recipe.recipe_id == id)
         result = session.execute(stmt)
         scalar_recipes = result.scalars()
         formatted_recipe = RecipeSchema().dump(scalar_recipes, many=True)
-        return {"data":formatted_recipe}
+        return {"data": formatted_recipe}
     except (TypeError, ValueError, KeyError) as error:
         print(error)
         return {"error": error}
-    
+
 
 @bp.post(f"/api/{api_version}/recipes")
 def post_recipe():
@@ -72,32 +71,32 @@ def post_recipe():
         return {"data": formatted_recipe}
 
     except KeyError as err:
-         print("error: %s" % err)
-         return {"error": "INVALID_REQUEST", "details": f"KeyError: {err.args[0]}"}, 400
+        print("error: %s" % err)
+        return {"error": "INVALID_REQUEST", "details": f"KeyError: {err.args[0]}"}, 400
     except ValueError as err:
         print("error: %s" % err)
-        return {"error": "INVALID_REQUEST", "details": f"ValueError: {err.args[0]}"}, 400
+        return {
+            "error": "INVALID_REQUEST",
+            "details": f"ValueError: {err.args[0]}",
+        }, 400
     except Exception as err:
         print("error: %s" % err)
         return {"error": "INTERNAL_SERVER_ERROR"}, 500
- 
-        
+
+
 @bp.put(f"/api/{api_version}/recipes/<int:recipe_id>")
 def update_recipe(recipe_id):
     session = db.session
     json_data = request.get_json()
     try:
         id = int(recipe_id)
-        stmt = (
-            select(Recipe)
-            .where(Recipe.recipe_id == id)
-        )
+        stmt = select(Recipe).where(Recipe.recipe_id == id)
         result = session.execute(stmt)
         recipe = result.scalar()
         recipe.name = json_data["recipe_name"]
         for item in json_data["ingredients"]:
             ingredient = Ingredient()
-            ingredient.ingredient_name = item["ingredient_name"] # this should be raising an error during testing
+            ingredient.ingredient_name = item["ingredient_name"]
             if "unit" in item:
                 ingredient.unit = item["unit"]
             if "amount" in item:
@@ -119,11 +118,14 @@ def update_recipe(recipe_id):
         return {"data": formatted_recipe}
 
     except KeyError as err:
-         print("error: %s" % err)
-         return {"error": "INVALID_REQUEST", "details": f"KeyError: {err.args[0]}"}, 400
+        print("error: %s" % err)
+        return {"error": "INVALID_REQUEST", "details": f"KeyError: {err.args[0]}"}, 400
     except ValueError as err:
         print("error: %s" % err)
-        return {"error": "INVALID_REQUEST", "details": f"ValueError: {err.args[0]}"}, 400
+        return {
+            "error": "INVALID_REQUEST",
+            "details": f"ValueError: {err.args[0]}",
+        }, 400
     except Exception as err:
         print("error: %s" % err)
         return {"error": "INTERNAL_SERVER_ERROR"}, 500
@@ -134,15 +136,10 @@ def delete_recipe(recipe_id):
     session = db.session
     try:
         id = int(recipe_id)
-        stmt = (
-            delete(Recipe)
-            .where(Recipe.recipe_id == id)
-        )
+        stmt = delete(Recipe).where(Recipe.recipe_id == id)
         session.execute(stmt)
         session.commit()
         return {}, 200
     except Exception as err:
         print("error: %s" % err)
         return {"error": "INTERNAL_SERVER_ERROR"}, 500
-
-

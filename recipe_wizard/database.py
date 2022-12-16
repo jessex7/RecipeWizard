@@ -1,6 +1,5 @@
 from sqlalchemy.ext.declarative import declarative_base
-from sys import argv
-from datetime import datetime,timezone
+from datetime import datetime, timezone
 import click
 import json
 from flask.cli import with_appcontext
@@ -9,15 +8,19 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 Base = declarative_base()
 
+
 def init_db():
-    from recipe_wizard import models # why is this here?
+    from recipe_wizard import models  # why is this here?
+
     Base.metadata.drop_all(bind=db.engine)
     Base.metadata.create_all(bind=db.engine)
+
 
 def register_database_commands(app):
     app.logger.info("registering database CLI commands to app")
     app.cli.add_command(init_db_command)
     app.cli.add_command(insert_recipes_command)
+
 
 @click.command("init-db")
 @with_appcontext
@@ -32,6 +35,7 @@ def init_db_command():
 def insert_recipes_command(dataset):
     insert_recipes(recipe_file=dataset)
 
+
 # requires active app context
 def insert_recipes(recipe_file):
     with open(recipe_file) as f:
@@ -42,8 +46,10 @@ def insert_recipes(recipe_file):
             session.add(recipe)
         session.commit()
 
+
 def convert_recipe_dict_to_model(input_dict):
-    from recipe_wizard.models import Recipe,Ingredient
+    from recipe_wizard.models import Recipe, Ingredient
+
     timestamp = datetime.now(timezone.utc)
     recipe = Recipe()
     recipe.recipe_name = input_dict["recipe_name"]
