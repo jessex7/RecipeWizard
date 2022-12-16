@@ -38,7 +38,7 @@ nav ul {
 /* END base.html styling */
 
 /* BEGIN form styling */
-form {
+form.recipe-form {
     border: 1px solid #ccc;
     border-radius: 1em;
     margin: 20px auto;
@@ -114,6 +114,21 @@ form {
     background-color: white;
     border: none;
 }
+.chill-input {
+    border: none;
+ }
+
+ .edit-link:-webkit-any-link {
+    text-decoration: none;
+ }
+ .edit-link {
+    border-radius: 3px;
+    border-width: 0px;
+ }
+ textarea {
+    width: 100%;
+    margin-bottom: 20px;
+}
 
 /* END form styling */
 
@@ -161,8 +176,6 @@ hr {
     font-style: italic;
     color: green;
 }
-
-
 
 .card-row label {
    width: 80px;
@@ -216,40 +229,52 @@ table {
 
 /* Button styling */
 
-
-
-
 .edit-recipe-button {
     display: inline-block;
     
 }
 
-textarea {
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-/* edit.html specific styling */
-
-.chill-input {
-    border: none;
- }
-
- .edit-link:-webkit-any-link {
-    text-decoration: none;
- }
- .edit-link {
-    border-radius: 3px;
-    border-width: 0px;
- }
-
  /* BEGIN selection.html styling */
-.container-1 {
-    display: flex
+.grid-container-1 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    width:800px;
+    margin: 0 auto;
 }
 
 h2 {
     color: green;
 }
+
+.checkmark-form {
+    display: inline-block;
+}
+.checkmark-form label {
+    width:min-content
+}
+/* input[type=checkbox] {
+    visibility:hidden
+} */
+input.is-selected-checkbox {
+    width: 20px;
+    height: 20px;
+    box-sizing:border-box;
+    margin-left: 30px;
+}
+.selected-list-container {
+    text-align: center;
+}
+#generate-list-btn {
+    margin: 0 auto;
+    background-color: green;
+    color: white;
+    height: 30px;
+    border-radius: 5px;
+    border-color: white;
+    border-width: 0;
+}
+/* input.is-selected-checkbox:checked {
+    background-color: green;
+} */
 
  /* END selection.html styling*/
