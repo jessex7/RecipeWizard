@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "recipewizard"
+version = "0.1.0"
+description = ""
+authors = ["Joe <jessex7@protonmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Flask = "^2.2.2"
+SQLAlchemy = "^1.4.45"
+flask-sqlalchemy = "^3.0.2"
+pytest = "^7.2.0"
+coverage = "^7.0.1"
+Jinja2 = "^3.1.2"
+marshmallow = "^3.19.0"
+black = "^22.12.0"
+marshmallow-sqlalchemy = "^0.28.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = [
+    "tests",
+]
