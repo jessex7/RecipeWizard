@@ -8,7 +8,6 @@ if (document.querySelector('.save-btn') != null) {
     for (let index = 0; index < deleteRowBtns.length; index++) {
         deleteRowBtns[index].addEventListener('click', removeRow);
     };
-    document.querySelector('.delete-recipe-btn').addEventListener('click',deleteRecipe);
 };
 
 // index.html functionality
@@ -16,6 +15,14 @@ if (document.querySelector('.edit-link') != null) {
     let deleteRecipeBtns = document.querySelectorAll('.delete-recipe-btn');
     for (let index = 0; index < deleteRecipeBtns.length; index++) {
         deleteRecipeBtns[index].addEventListener('click', deleteRecipe);
+    };
+};
+
+// selections.html functionality
+if (document.querySelector('.add-to-list-btn') != null) {
+    let addToListBtns = document.querySelectorAll('.add-to-list-btn');
+    for (let index = 0; index < addToListBtns.length; index++) {
+        addToListBtns[index].addEventListener('click', addRecipeToList);
     };
 };
 
@@ -116,15 +123,14 @@ function addRowToBottom() {
         button.type = 'button';
         button.className = 'delete-row-btn';
         button.textContent = 'x';
+        button.addEventListener('click', removeRow)
         buttonCell.appendChild(button);
         newTableRow.appendChild(buttonCell);
         tbody.appendChild(newTableRow);
 }
 
 function deleteRecipe(e) {
-    //const deleteEndpoint = document.URL.slice(0,-5)
     const tgt = e.currentTarget
-    const paths = tgt.children[0];
     const link = tgt.children[1];
     const deleteEndpoint = link.href;
 
@@ -144,58 +150,27 @@ function deleteRecipe(e) {
 
 
 
+// selection.html functionality
+function addRecipeToList(e) {
+    const tgt = e.currentTarget;
+    console.log(tgt);
+    const parent = tgt.parentNode;
+    console.log(parent);
+    const recipeTitle = parent.children[0].firstChild.data;
+    console.log(recipeTitle);
 
+    const tbody = document.querySelector('.selection-tbody');
+    console.log(tbody);
+    const newTableRow = document.createElement('tr');
+    newTableRow.className = 'selected-recipe-row';
 
-// if (document.querySelector('.delete-recipe-btn') != null) {
-//     document.querySelector('.delete-recipe-button').addEventListener('click', deleteItem);
-// }
+    // construct the cells
+    const nameCell = document.createElement('td');
+    nameCell.className = 'recipe-title-cell';
+    const namePara = document.createElement('p');
+    namePara.innerHTML = recipeTitle;
+    nameCell.appendChild(namePara);
+    newTableRow.appendChild(nameCell);
+    tbody.appendChild(newTableRow);
 
-// function deleteItem(e) {
-//     const recipeElement = e.target.parentNode.parentNode.parentNode;
-//     const deleteEndpoint = recipeElement.lastElementChild.href;
-//     fetch(deleteEndpoint, {
-//         method: 'DELETE',
-//     })
-//     .then(
-//         response => {
-//             if (response.redirected) {
-//                 window.location = response.url
-//             } else {
-//                 alert(response.status)
-//             }
-//         }
-//     )
-// }
-
-
-// document.querySelector('.ingredients').addEventListener('click', function(e) {
-//     if(e.target && e.target.className === 'plus-button') {
-//         addRow();
-//     } else if (e.target && e.target.className === 'delete-row-btn') {
-//         removeRow(e);
-//     } else {
-        
-//     }
-// });
-
-// index.html functionality
-
-// if (document.querySelector('.edit-recipe-button') != null) {
-//     document.querySelector('.edit-recipe-button').addEventListener('click', editItem);
-// }
-
-
-// function editItem(e) {
-//     const recipeElement = e.target.parentNode.parentNode.parentNode;
-//     const editEndpoint = recipeElement.lastElementChild.href;
-//     location.href = editEndpoint;
-//     // fetch(editEndpoint, {
-//     //     method: 'GET'
-//     // })
-//     // .then(function(response) {
-//     //     return response.text();
-//     // })
-//     // .then(function(html) {
-//     //     document.body.innerHTML = html;
-//     // });
-// }
+}

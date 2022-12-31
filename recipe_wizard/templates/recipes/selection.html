@@ -1,20 +1,46 @@
-{% extends 'base.html' %}
-{% block content %}
-<div class="container-1">
+{% extends 'base_with_sidebar.html' %}
+{% block main %}
+<main>
+{% for recipe in recipes %}
 
-    <div class="selections-container">
+    {{ macros.create_card(recipe, true) }}
+
+{% endfor %}
+</main>
+{% endblock %}
+{% block sidebar %}
+<div class="sidebar">
+    <table>
+        <tbody class="selection-tbody">
+            <tr class="selected-recipe-row">
+                <td><p></p></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+<!-- <div class="grid-container-1">
+    <div class="spacer-left"></div>
+    <div class="cards-container">
         {% for recipe in recipes %}
-            <h2>{{ recipe.recipe_name }}</h2>
-            <p>{{ recipe.author }}</p>
-            <p>{{ recipe.rating }}</p>
+        {{ macros.create_card(recipe, true) }}
         {% endfor %}
 
     </div>
-    <div class="list-container">
-
+    <div class="sidebar">
+        <table>
+            <tbody class="selection-tbody">
+                <tr class="selected-recipe-row">
+                    <td><p></p></td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" id="generate-list-btn">Generate List
+            
+        </button>
     </div>
-</div>
+    <div class="spacer-right"></div>
+</div> -->
 
-    <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}">
 
-{% endblock %}

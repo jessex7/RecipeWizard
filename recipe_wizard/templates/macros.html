@@ -25,9 +25,9 @@
                 {% endfor %}
             {% else %}
             <tr class="standard-row">
-                <td class="row-ingredient"><input name="ingredient-name" type="text" class="ingredient-name-input"></td>
+                <td class="row-ingredient"><input name="ingredient-name" type="text" class="ingredient-name-input" placeholder="e.g. flour"></td>
                 <td class="row-amount "><input name="ingredient-amount" type="number" class="ingredient-amount-input"></td>
-                <td class="row-unit"><input name ="ingredient-unit" type="text" class="ingredient-unit-input"></td>
+                <td class="row-unit"><input name ="ingredient-unit" type="text" class="ingredient-unit-input" placeholder="e.g. a cup"></td>
                 <td class="row-button"><Button type="button" class="delete-row-btn">x</Button></td>
             </tr>
             {% endif %}
@@ -49,10 +49,12 @@
       <div class="card-row">
         <h2 class="recipe-title">{{ recipe['recipe_name'] }}</h2>
         {% if show_selector_no_links is true %}
-        <form class="checkmark-form">
-            <label for="is-selected-checkbox" hidden></label>
-            <input name="is-selected-checkbox" class="is-selected-checkbox" type="checkbox">
-        </form>
+          <button type="button" class="add-to-list-btn svg-btn-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-plus-square" viewBox="0 0 16 16">
+              <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+            </svg>
+          </button>
         {% else %}
         <a class="edit-link" href="{{ url_for('web_api_bp.get_edit_recipe_page', recipe_id=recipe['recipe_id']) }}">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-pencil" viewBox="0 0 16 16">
@@ -76,8 +78,8 @@
       </div>
       <div class="card-row">
         <ul class="recipe-entry-timeline">
-          <li><strong>Prep time:</strong> {{ recipe['prep_time'] }}</li>
-          <li><strong>Cook time:</strong> {{ recipe['cook_time'] }}</li>
+          <li>Prep time: {{ recipe['prep_time'] }}</li>
+          <li>Cook time: {{ recipe['cook_time'] }}</li>
         </ul>
       </div>
       <hr>
