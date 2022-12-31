@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% for recipe in recipes %}
-    {{ macros.create_card(recipe, false) }}
-    {% if not loop.last %}
-    <hr class="card-separator">
-    {% endif %}
-    {% endfor %}
-    <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}">
+<main>
+        {% for recipe in recipes %}
+        {{ macros.create_card(recipe, false) }}
+        {% if not loop.last %}
+        <hr class="card-separator">
+        {% endif %}
+        {% endfor %}
+</main>
 
 {% endblock %}

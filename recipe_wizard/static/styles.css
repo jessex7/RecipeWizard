@@ -1,55 +1,117 @@
 /* BEGIN universal styling */
-label {
-    font-weight: bold;
+* {
+    box-sizing:border-box;
 }
-/* END universal styling */
-
-/* BEGIN base.html styling */
-
 body {
     margin: 0;
 }
-.menu {
-    position:fixed;
-    width: 100%;
-    top: 0;
-
+/* label {
+    font-weight: bold;
+} */
+ul {
+    padding: 0px;
+}
+header {
+    background-color: green;
+    margin-bottom: 2px;
+}
+.nav-menu {
+    height:100%;
 }
 nav ul {
     display: flex;
-    justify-content: flex-end;
     list-style: none;
-    background: green;
+    justify-content: flex-end;
+    align-items: stretch;
     margin: 0;
+    gap: 10px;
+    height:100%;
+    padding-right:30px;
+
 }
+nav li {
+    min-width: 70px;
+}
+
 .nav a {
     color: white;
     text-decoration: none;
+    height: 100%;
+    text-align: center;
     display: block;
-    padding: 1em;
-    margin-right:2em;
+    padding: 5px;
+    /*margin-right:2em;
+    padding:.8em; */
 }
 .nav a:hover {
     background: darkgreen
 }
-.content-container {
-    padding-top:50px;
+/* END universal styling */
+
+/* BEGIN base_with_sidebar styling */
+#site-container-with-sidebar {
+    display: grid;
+    height:100vh;
+    top:0;
+    grid-template-columns: repeat(9, 1fr);
+    grid-auto-rows: minmax(40px, auto);
+    grid-template-areas:
+    "hd hd hd hd hd hd hd hd hd"
+    ". main main main main sb sb sb .";
 }
-/* END base.html styling */
+#site-container-with-sidebar > header {
+    grid-area: hd;
+    max-height: 40px;
+    width: 100%;
+
+}
+#site-container-with-sidebar > main {
+    grid-area: main;
+    overflow:auto;
+    justify-self: center;
+}
+/* END base_with_sidebar styling */
+
+/* BEGIN base styling */
+#site-container {
+    display: grid;
+    height:100vh;
+    top:0;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: 40px auto;
+    grid-auto-rows: minmax(40px, auto);
+    grid-template-areas:
+    "hd hd hd hd hd hd hd hd hd"
+    ". . main main main main main . .";
+}
+#site-container > header {
+    grid-area: hd;
+    max-height: 40px;
+    width: 100%;
+}
+
+#site-container > main {
+    grid-area: main;
+    overflow:auto;
+    justify-self: center;
+}
+
+
+/* END base styling */
 
 /* BEGIN form styling */
 form.recipe-form {
     border: 1px solid #ccc;
     border-radius: 1em;
-    margin: 20px auto;
     width: 600px;
+    margin-top:20px;
 }
 .form-row {
     width: 95%;
     margin: 10px auto;
 }
 .form-row label {
-    width: 80px;
+    width: 90px;
     display: inline-block;
 }
 .time-input,.rating-input {
@@ -75,6 +137,7 @@ form.recipe-form {
     color: grey;
     font-size: .5em;
     opacity: 75%;
+    font-weight: normal;
 }
 /* Embedded input styling */
 .ingredients input {
@@ -92,7 +155,6 @@ form.recipe-form {
     margin-top: 5px;
     padding: 5px 0;
     background-color: green;
-    font-weight:bold;
     width: 15%;
     color: white;
 }
@@ -115,7 +177,7 @@ form.recipe-form {
     border: none;
 }
 .chill-input {
-    border: none;
+    border: 1px red;
  }
 
  .edit-link:-webkit-any-link {
@@ -134,12 +196,15 @@ form.recipe-form {
 
 /* recipe card styling */
 
-
+.card a {
+    text-decoration: none;
+}
 .card {
     border: 1px solid #ccc;
     border-radius: 1em;
-    margin: 20px auto;
-    width: 600px;
+    margin: 20px;
+    min-width: 400px;
+    max-width: 650px;
 }
 .card-row {
     width: 95%;
@@ -148,7 +213,6 @@ form.recipe-form {
  }
 .recipe-entry-timeline {
     list-style-type: none;
-    padding-left: 0;
 }
 
 .recipe-entry-timeline li {
@@ -162,7 +226,8 @@ hr {
     border-width: 1px;
 }
 .card-separator {
-    width: 650px;
+    min-width: 400px;
+    max-width: 650px;
     margin-top: 15px;
     margin-bottom: 15px;
     border-width: 1px;
@@ -235,12 +300,7 @@ table {
 }
 
  /* BEGIN selection.html styling */
-.grid-container-1 {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    width:800px;
-    margin: 0 auto;
-}
+
 
 h2 {
     color: green;
@@ -249,18 +309,24 @@ h2 {
 .checkmark-form {
     display: inline-block;
 }
-.checkmark-form label {
-    width:min-content
+.add-to-list-btn {
+    display: inline-block;
+    background-color: white;
+    border: none;
+    padding:0;
 }
-/* input[type=checkbox] {
-    visibility:hidden
-} */
-input.is-selected-checkbox {
-    width: 20px;
-    height: 20px;
-    box-sizing:border-box;
-    margin-left: 30px;
+
+.bi-plus-square {
+    width:1em;
+    height:1em;
+    font-size:2em
 }
+.delete-recipe-btn {
+    display: inline-block;
+    background-color: white;
+    border: none;
+}
+
 .selected-list-container {
     text-align: center;
 }
