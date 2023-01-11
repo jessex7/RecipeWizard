@@ -33,3 +33,23 @@ class Ingredient(Base):
     ingredient_name = Column(String, nullable=False)
     unit = Column(String)
     amount = Column(Float)
+
+
+class GroceryList(Base):
+    __tablename__ = "grocery_list"
+    grocery_list_id = Column(Integer, primary_key=True)
+    created_at = Column(DateTime)
+    modified_at = Column(DateTime)
+    grocery_items = relationship("GroceryItem", cascade="all, delete-orphan")
+
+
+class GroceryItem(Base):
+    __tablename__ = "grocery_item"
+    grocery_item_id = Column(Integer, primary_key=True)
+    grocery_list_id = Column(
+        Integer,
+        ForeignKey(
+            "grocery_list.grocery_list_id", ondelete="CASCADE", onupdate="CASCADE"
+        ),
+    )
+    item = Column(String)

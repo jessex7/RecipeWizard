@@ -1,0 +1,18 @@
+{% extends 'base_with_sidebar.html' %}
+{% block main %}
+<main>
+{% for recipe in recipes %}
+
+    {{ macros.create_card(recipe, true) }}
+
+{% endfor %}
+</main>
+{% endblock %}
+{% block sidebar %}
+<div class="sidebar">
+    <h2>Your selections</h2>
+    <ul id="selected-recipe-list">
+    </ul>
+    <button id="generate-list-btn" type="button" data-post-endpoint="{{ url_for('web_api_bp.post_grocery_list') }} ">Generate List</button>
+</div>
+{% endblock %}

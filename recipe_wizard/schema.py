@@ -1,12 +1,9 @@
-from marshmallow import fields
+from marshmallow import fields, Schema
 from marshmallow_sqlalchemy import SQLAlchemySchema, auto_field
 from marshmallow_sqlalchemy.fields import Nested
 
 
-from recipe_wizard.models import (
-    Recipe,
-    Ingredient,
-)
+from recipe_wizard.models import Recipe, Ingredient, GroceryList, GroceryItem
 
 
 class IngredientSchema(SQLAlchemySchema):
@@ -38,3 +35,27 @@ class RecipeSchema(SQLAlchemySchema):
     author = auto_field()
     ingredients = fields.List(Nested(IngredientSchema))
     instructions = auto_field()
+
+
+class GroceryListEndpointSchema(Schema):
+    recipe_ids = fields.List(fields.Integer())
+
+
+class GroceryItemSchema(SQLAlchemySchema):
+    class Meta:
+        model = GroceryItem
+        load_instance = True
+
+    item = auto_field()
+
+
+class GroceryListSchema(SQLAlchemySchema):
+    class Meta:
+        model = GroceryList
+        load_instance = True
+        include_relationships = True
+
+    grocery_list_id = auto_field()
+    created_at = auto_field()
+    modified_at = auto_field()
+    grocery_items = fields.List(Nested(GroceryItemSchema))

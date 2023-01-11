@@ -19,11 +19,12 @@ def create_app(testing=False):
         def the_index():
             return {"hello, ": "world"}
 
-        from recipe_wizard.rest import rest_api
-
-        app.register_blueprint(rest_api.bp)
+        from recipe_wizard.rest import recipes_api, grocery_list_api
         from recipe_wizard.web import web
 
+        app.register_blueprint(recipes_api.bp)
+        app.register_blueprint(grocery_list_api.bp)
         app.register_blueprint(web.bp)
+
         print(app.url_map)
     return app

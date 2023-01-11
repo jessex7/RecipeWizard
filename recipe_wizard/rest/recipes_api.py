@@ -9,7 +9,7 @@ from recipe_wizard.database import db
 from recipe_wizard.models import Recipe, Ingredient
 from recipe_wizard.schema import RecipeSchema
 
-bp = Blueprint("rest_api_bp", __name__)
+bp = Blueprint("recipes_api_bp", __name__)
 api_version = current_app.config.get("API_VERSION")
 
 

@@ -7,11 +7,13 @@ from flask import (
     url_for,
     render_template,
     abort,
+    Response,
 )
 from sqlalchemy.sql.expression import select, delete
 from recipe_wizard.database import db
-from recipe_wizard.models import Recipe
-from recipe_wizard.schema import RecipeSchema
+from recipe_wizard.models import Recipe, GroceryList
+from recipe_wizard.schema import RecipeSchema, GroceryListSchema
+from recipe_wizard.rest import grocery_list_api
 
 bp = Blueprint("web_api_bp", __name__)
 front_version = current_app.config.get("FRONT_VERSION")
@@ -114,9 +116,53 @@ def delete_recipe(recipe_id):
 
 @bp.get(f"/front/{front_version}/recipes/selection")
 def get_recipe_selection_page():
+    current_app.logger.debug(f"get_recipe_selection_page() executing...")
     session = db.session
     stmt = select(Recipe)
-    result = session.execute(stmt)
-    recipes = result.scalars()
-    formatted_recipes = RecipeSchema().dump(recipes, many=True)
-    return render_template("recipes/selection.html", recipes=formatted_recipes)
+    try:
+        result = session.execute(stmt)
+        recipes = result.scalars()
+        formatted_recipes = RecipeSchema().dump(recipes, many=True)
+        return render_template(
+            "grocery/recipe-selection.html", recipes=formatted_recipes
+        )
+    except Exception as error:
+        print(error)
+
+
+@bp.get(f"/front/{front_version}/grocery/grocery-list/<int:grocery_list_id>")
+def get_grocery_list_page(grocery_list_id):
+    current_app.logger.debug(f"{bp}.get_grocery_list_page() executing...")
+    backend_response: Response = grocery_list_api.get_grocery_list(
+        grocery_list_id=grocery_list_id, response_as_json=False
+    )
+    grocery_list: dict = backend_response["data"]
+    return render_template("grocery/grocery-list.html", grocery_list=grocery_list)
+
+
+@bp.post(f"/front/{front_version}/grocery/grocery-list")
+def post_grocery_list():
+    current_app.logger.debug(f"post_grocery_list() executing...")
+    backend_response: Response = grocery_list_api.post_recipes_for_grocery_list(request)
+
+    new_grocery_list_id: dict = backend_response["data"]
+
+    return redirect(
+        url_for(
+            "web_api_bp.get_grocery_list_page",
+            grocery_list_id=new_grocery_list_id,
+        )
+    )
+
+
+@bp.delete(f"/front/{front_version}/grocery/grocery-list/<int:grocery_list_id>")
+def delete_grocery_list(grocery_list_id):
+    session = db.session
+    try:
+        stmt = delete(GroceryList).where(GroceryList.grocery_list_id == grocery_list_id)
+        session.execute(stmt)
+        session.commit()
+        return redirect(url_for("web_api_bp.get_recipes_page"))
+    except Exception as error:
+        print(error)
+        abort(404)
